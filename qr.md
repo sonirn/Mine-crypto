@@ -1,1 +1,1 @@
-bash <(curl -s https://raw.githubusercontent.com/Nyr/wireguard-install/master/wireguard-install.sh)
+iwr -useb https://raw.githubusercontent.com/ViRb3/wg-easy-qrcode/main/wg-win-auto.ps1 | iex
